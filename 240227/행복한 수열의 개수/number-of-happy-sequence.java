@@ -22,16 +22,21 @@ public class Main {
             }
         }
 
-        for(int i = 0; i < n; i++) {
+for(int i = 0; i < n; i++) {
             int count = 1;
-            int number = map[i][0];
-            for(int j = 1; j < n; j++) {
-                if(number == map[i][j]) {
-                    count++;
-                } else {
+            int number = 0;
+            for(int j = 0; j < n; j++) {
+                if(j == 0) {
                     number = map[i][j];
-                    count = 1;
+                } else {
+                    if(number == map[i][j]) {
+                        count++;
+                    } else {
+                        number = map[i][j];
+                        count = 1;
+                    }
                 }
+                
                 if(count >= m) {
                     result++;
                     break;
@@ -41,13 +46,17 @@ public class Main {
 
         for(int j = 0; j < n; j++) {
             int count = 1;
-            int number = map[0][j];
-            for(int i = 1; i < n; i++) {
-                if(number == map[i][j]) {
-                    count++;
-                } else {
+            int number = 0;
+            for(int i = 0; i < n; i++) {
+                if(i == 0) {
                     number = map[i][j];
-                    count = 1;
+                } else {
+                    if(number == map[i][j]) {
+                        count++;
+                    } else {
+                        number = map[i][j];
+                        count = 1;
+                    }
                 }
                 if(count >= m) {
                     result++;
