@@ -32,9 +32,10 @@ public class Main {
                     number = map[i][j];
                     count = 1;
                 }
-            }
-            if(count >= m) {
-                result++;
+                if(count >= m) {
+                    result++;
+                    break;
+                }
             }
         }
 
@@ -48,9 +49,10 @@ public class Main {
                     number = map[i][j];
                     count = 1;
                 }
-            }
-            if(count >= m) {
-                result++;
+                if(count >= m) {
+                    result++;
+                    break;
+                }
             }
         }
 
