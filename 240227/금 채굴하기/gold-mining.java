@@ -31,7 +31,7 @@ public class Main {
 
         for(int a = 0; a < n; a++) {
             for(int b = 0; b < n; b++) {
-                for(int k = 0; k <= n/2 + 1; k++) {
+                for(int k = 0; k <= n; k++) {
                     boolean[][] vistied = new boolean[n][n];
                     bfs(a, b, k, vistied);
                 }
