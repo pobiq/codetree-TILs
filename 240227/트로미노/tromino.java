@@ -24,23 +24,23 @@ public class Main {
         for(int i = 0; i < n; i++) {
             for(int j = 0; j < m; j++) {
                 // case 1-1
-                if(i+1 < n && j+1 < m) {
-                    result = Math.max(result, cal(map[i][j], map[i+1][j], map[i+1][j+1]));
+                if(i-1 >= 0 && j+1 < m) {
+                    result = Math.max(result, cal(map[i][j], map[i-1][j], map[i][j+1]));
                 }
 
                 // case 1-2
-                if(i+1 < n && j-1 >= 0) {
-                    result = Math.max(result, cal(map[i][j], map[i+1][j-1], map[i+1][j-1]));
+                if(i-1 >= 0 && j-1 >= 0) {
+                    result = Math.max(result, cal(map[i][j], map[i-1][j], map[i][j-1]));
                 }
 
                 // case 1-3
-                if(i+1 < n && j-1 >= 0) {
-                    result = Math.max(result, cal(map[i][j], map[i][j-1], map[i+1][j]));
-                }
-
-                // case 1-4
                 if(i+1 < n && j+1 < m) {
                     result = Math.max(result, cal(map[i][j], map[i][j+1], map[i+1][j]));
+                }
+                
+                // case 1-4
+                if(i+1 < n && j-1 >= 0) {
+                    result = Math.max(result, cal(map[i][j], map[i][j-1], map[i+1][j]));
                 }
 
                 // case 2-1
