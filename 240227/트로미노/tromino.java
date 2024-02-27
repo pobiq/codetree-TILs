@@ -49,8 +49,8 @@ public class Main {
                 }
 
                 // case 2-2
-                if(j-2 >= 0) {
-                    result = Math.max(result, cal(map[i][j], map[i][j-1], map[i][j-2]));
+                if(i+2 < n) {
+                    result = Math.max(result, cal(map[i][j], map[i+1][j], map[i+2][j]));
                 }
             }
         }
