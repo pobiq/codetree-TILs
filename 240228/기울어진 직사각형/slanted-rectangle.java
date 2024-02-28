@@ -28,10 +28,13 @@ public class Main {
 
         for(int i = 0; i < n; i++) {
             for(int j = 0; j < n; j++) {
-                bfs(i, j);
+                for(int a = 1; a <= n-1; a++) {
+                    for(int b = 1; b <= n-1; b++) {
+                        func(i, j, a, b);
+                    }
+                }
             }
         }
-
 
         sb.append(result);
         bw.write(sb.toString());
@@ -39,39 +42,62 @@ public class Main {
         bw.close();
     }
 
-    private static void bfs(int i, int j) {
-        boolean[][] visited = new boolean[n][n];
-        int sum = map[i][j];
-        visited[i][j] = true;
-        int index = 0;
+    private static void func(int i, int j, int length, int height) {
+        int sum = 0;
 
         int x = i;
         int y = j;
 
-        while(true) {
+        for(int a = 0; a < length; a++) {
+            x += dx[0];
+            y += dy[0];
 
-            int xx = x + dx[index];
-            int yy = y + dy[index];
-
-            if(xx < 0 || xx >= n || yy < 0 || yy >= n) {
-                index++;
-                if(index >= 4) break;
-                continue;
+            if(isExist(x, y)) {
+                sum += map[x][y];
+            } else {
+                return;
             }
-
-            if(visited[xx][yy]) break;
-
-            visited[xx][yy] = true;
-            sum += map[xx][yy];
-
-            x = xx;
-            y = yy;
-
         }
 
-        if(index == 3) {
-            result = Math.max(result, sum);
+        for(int a = 0; a < height; a++) {
+            x += dx[1];
+            y += dy[1];
+
+            if(isExist(x, y)) {
+                sum += map[x][y];
+            } else {
+                return;
+            }
         }
 
+        for(int a = 0; a < length; a++) {
+            x += dx[2];
+            y += dy[2];
+
+            if(isExist(x, y)) {
+                sum += map[x][y];
+            } else {
+                return;
+            }
+        }
+
+        for(int a = 0; a < height; a++) {
+            x += dx[3];
+            y += dy[3];
+
+            if(isExist(x, y)) {
+                sum += map[x][y];
+            } else {
+                return;
+            }
+        }
+
+        result = Math.max(result, sum);
+
+    }
+
+    private static boolean isExist(int x, int y) {
+        if(x < 0 || x >= n || y < 0 || y >= n) return false;
+        return true;
     }
 }
