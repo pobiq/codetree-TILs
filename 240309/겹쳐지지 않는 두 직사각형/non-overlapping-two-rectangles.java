@@ -65,15 +65,22 @@ public class Main {
         }
 
         for(int i = 0; i < list.size(); i++) {
+            Loop:
             for(int j = 0; j < list.size(); j++) {
                 if(i == j) continue;
                 Node node1 = list.get(i);
                 Node node2 = list.get(j);
 
-                if(node1.x1 < node2.x1 && node2.x1 < node1.x2) continue;
-                if(node1.x1 < node2.x2 && node2.x2 < node1.x2) continue;
-                if(node1.y1 < node2.y1 && node2.y1 < node1.y2) continue;
-                if(node1.y1 < node2.y2 && node2.y2 < node1.y2) continue;
+
+                for(int x = node1.x1; x <= node1.x2; x++) {
+                    for(int y = node1.y1; y <= node1.y2; y++) {
+                        for(int xx = node2.x1; xx <= node2.x2; xx++) {
+                            for(int yy = node2.y1; yy <= node2.y2; yy++) {
+                                if(x == xx && y == yy) continue Loop;
+                            }
+                        }
+                    }
+                }
 
 
                 if(result < node1.sum + node2.sum) {
