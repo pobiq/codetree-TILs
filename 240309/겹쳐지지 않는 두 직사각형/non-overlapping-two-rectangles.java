@@ -71,10 +71,10 @@ public class Main {
                 Node node1 = list.get(i);
                 Node node2 = list.get(j);
 
-                for(int x = node1.x1; x <= node1.x2; x++) {
-                    for(int y = node1.y1; y <= node1.y2; y++) {
-                        for(int xx = node2.x1; xx <= node2.x2; xx++) {
-                            for(int yy = node1.y1; yy <= node2.y2; yy++) {
+                for(int x = node1.x1; x < node1.x2; x++) {
+                    for(int y = node1.y1; y < node1.y2; y++) {
+                        for(int xx = node2.x1; xx < node2.x2; xx++) {
+                            for(int yy = node2.y1; yy < node2.y2; yy++) {
                                 if(x == xx) continue Loop;
                                 if(y == yy) continue Loop;
                             }
