@@ -7,7 +7,7 @@ public class Main {
     static int n, k;
     static int result = 0;
     static int[][] map;
-    static boolean[][][] visited;
+    static boolean[][] visited;
 
 
     public static void main(String[] args) throws IOException {
@@ -28,30 +28,19 @@ public class Main {
                 map[i][j] = Integer.parseInt(st1.nextToken());
             }
         }
-        visited = new boolean[k][n][n];
+        visited = new boolean[n][n];
 
         for(int i = 0; i < k; i++) {
             StringTokenizer st2 = new StringTokenizer(br.readLine());
             int r = Integer.parseInt(st2.nextToken()) - 1;
             int c = Integer.parseInt(st2.nextToken()) - 1;
-            bfs(i, r, c);
-        }
-        
-        
-        for(int a = 0; a < n; a++) {
-            for(int b = 0; b < n; b++) {
-                boolean flag = true;
-                for(int i = 0; i < k; i++) {
-                    if (!visited[i][a][b]) {
-                        flag = false;
-                        break;
-                    }
-                }
-                if(flag) {
-                    result++;
-                }
+            if(!visited[r][c]) {
+                visited[r][c] = true;
+                result++;
+                bfs(r, c);
             }
         }
+
 
         sb.append(result);
         bw.write(sb.toString());
@@ -59,25 +48,23 @@ public class Main {
         bw.close();
     }
 
-    private static void bfs(int i, int x, int y) {
-        visited[i][x][y] = true;
+    private static void bfs(int x, int y) {
         Queue<int[]> queue = new LinkedList<>();
-        queue.add(new int[]{i, x, y});
+        queue.add(new int[]{x, y});
 
         while(!queue.isEmpty()) {
             int[] temp = queue.poll();
-
             for(int a = 0; a < 4; a++) {
-                int nextX = temp[1] + dx[a];
-                int nextY = temp[2] + dy[a];
+                int nextX = temp[0] + dx[a];
+                int nextY = temp[1] + dy[a];
 
                 if(nextX < 0 || nextX >= n || nextY < 0 || nextY >= n) continue;
 
-                if(visited[i][nextX][nextY] || map[nextX][nextY] == 1) continue;
+                if(visited[nextX][nextY] || map[nextX][nextY] == 1) continue;
 
-                visited[i][nextX][nextY] = true;
-
-                queue.add(new int[]{i, nextX, nextY});
+                visited[nextX][nextY] = true;
+                result++;
+                queue.add(new int[]{nextX, nextY});
 
             }
         }
