@@ -37,7 +37,7 @@ public class Main {
             for (int j = 0; j < n; j++) {
                 if(!visited[i][j]) {
                     int number = map[i][j];
-                    block = 0;
+                    block = 1;
                     visited[i][j] = true;
                     dfs(i, j, number);
                     if(block >= 4) {
