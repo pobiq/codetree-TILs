@@ -38,6 +38,7 @@ public class Main {
                 if(!visited[i][j]) {
                     int number = map[i][j];
                     block = 0;
+                    visited[i][j] = true;
                     dfs(i, j, number);
                     if(block >= 4) {
                         blockCount++;
