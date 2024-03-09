@@ -13,7 +13,7 @@ public class Main {
     static int rain_max = 0;
 
     static int K_max = 0;
-    static int count_max = 0;
+    static int count_max = -1;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
