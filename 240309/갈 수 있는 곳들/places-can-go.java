@@ -32,8 +32,8 @@ public class Main {
 
         for(int i = 0; i < k; i++) {
             StringTokenizer st2 = new StringTokenizer(br.readLine());
-            int r = Integer.parseInt(st2.nextToken());
-            int c = Integer.parseInt(st2.nextToken());
+            int r = Integer.parseInt(st2.nextToken()) - 1;
+            int c = Integer.parseInt(st2.nextToken()) - 1;
             bfs(i, r, c);
         }
 
