@@ -20,8 +20,8 @@ public class Main {
         n = Integer.parseInt(st.nextToken());
         m = Integer.parseInt(st.nextToken());
 
-        map = new int[n][n];
-        visited = new boolean[n][n];
+        map = new int[n][m];
+        visited = new boolean[n][m];
 
         for(int i = 0; i < n; i++) {
             StringTokenizer st1 = new StringTokenizer(br.readLine());
@@ -49,7 +49,7 @@ public class Main {
             if(temp[0] == n-1 && temp[1] == m-1) {
                 result = 1;
             }
-            
+
             for(int i = 0; i < 4; i++) {
                 int nextX = temp[0] + dx[i];
                 int nextY = temp[1] + dy[i];
