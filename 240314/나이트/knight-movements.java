@@ -39,10 +39,10 @@ public class Main {
         }
 
         StringTokenizer st1 = new StringTokenizer(br.readLine());
-        r1 = Integer.parseInt(st1.nextToken());
-        c1 = Integer.parseInt(st1.nextToken());
-        r2 = Integer.parseInt(st1.nextToken());
-        c2 = Integer.parseInt(st1.nextToken());
+        r1 = Integer.parseInt(st1.nextToken()) - 1;
+        c1 = Integer.parseInt(st1.nextToken()) - 1;
+        r2 = Integer.parseInt(st1.nextToken()) - 1;
+        c2 = Integer.parseInt(st1.nextToken()) - 1;
 
         visited[r1][c1] = true;
         map[r1][c1] = 0;
