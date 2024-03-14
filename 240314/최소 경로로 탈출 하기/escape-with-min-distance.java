@@ -69,7 +69,7 @@ public class Main {
                 int nextX = node.x + dx[i];
                 int nextY = node.y + dy[i];
 
-                if(nextX < 0 || nextX >= n || nextY < 0 || nextY >= n) continue;
+                if(nextX < 0 || nextX >= n || nextY < 0 || nextY >= m) continue;
 
                 if(visited[nextX][nextY] || map[nextX][nextY] == 0) continue;
 
