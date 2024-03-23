@@ -7,18 +7,19 @@ public class Main {
     static int n, k;
     static int r1,c1,r2,c2;
     static int[][] map;
-    static boolean[][] visited;
-    static int[][] dist;
+    static boolean[][][] visited;
 
     static public class Node {
         int x;
         int y;
         int count;
+        int dist;
 
-        public Node(int x, int y, int count) {
+        public Node(int x, int y, int count, int dist) {
             this.x = x;
             this.y = y;
             this.count = count;
+            this.dist = dist;
         }
 
         public String toString() {
@@ -26,7 +27,8 @@ public class Main {
         }
     }
 
-    static int result = 0;
+
+    static int result = -1;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -41,8 +43,7 @@ public class Main {
         StringBuffer sb = new StringBuffer();
 
         map = new int[n][n];
-        visited = new boolean[n][n];
-        dist = new int[n][n];
+        visited = new boolean[k+1][n][n];
 
         for(int i = 0; i < n; i++) {
             StringTokenizer st1 = new StringTokenizer(br.readLine());
@@ -58,13 +59,7 @@ public class Main {
         r2 = Integer.parseInt(st3.nextToken()) - 1;
         c2 = Integer.parseInt(st3.nextToken()) - 1;
 
-        bfs(new Node(r1, c1, 0));
-
-        if(dist[r2][c2] == 0) {
-            result = -1;
-        } else {
-            result = dist[r2][c2];
-        }
+        bfs(new Node(r1, c1, 0, 0));
 
         sb.append(result);
 
@@ -74,7 +69,6 @@ public class Main {
     }
 
     private static void bfs(Node temp) {
-        visited[temp.x][temp.y] = true;
         Queue<Node> queue = new LinkedList<>();
         queue.add(temp);
 
@@ -83,38 +77,32 @@ public class Main {
             int x = node.x;
             int y = node.y;
             int count = node.count;
+            int dist = node.dist;
+
+            if(x == r2 && y == c2) {
+                result = dist;
+            }
 
             for(int i = 0; i < 4; i++) {
                 int nextX = x + dx[i];
                 int nextY = y + dy[i];
+                int nextCount = count + 1;
+                int nextDist = dist + 1;
 
                 if(nextX < 0 || nextX >= n || nextY < 0 || nextY >= n) continue;
 
+                if(visited[count][nextX][nextY]) continue;
+
                 if(map[nextX][nextY] == 1) {
                     if(count < k) {
-                        if(visited[nextX][nextY]) {
-                            if(dist[nextX][nextY] > dist[x][y] + 1) {
-                                dist[nextX][nextY] = dist[x][y] + 1;
-                                queue.add(new Node(nextX, nextY, count + 1));
-                            }
-                        } else {
-                            visited[nextX][nextY] = true;
-                            dist[nextX][nextY] = dist[x][y] + 1;
-                            queue.add(new Node(nextX, nextY, count + 1));
-                        }
+                        visited[nextCount][nextX][nextY] = true;
+                        queue.add(new Node(nextX, nextY, nextCount, nextDist));
                     }
                 } else {
-                    if(visited[nextX][nextY]) {
-                        if(dist[nextX][nextY] > dist[x][y] + 1) {
-                            dist[nextX][nextY] = dist[x][y] + 1;
-                            queue.add(new Node(nextX, nextY, count));
-                        }
-                    } else {
-                        visited[nextX][nextY] = true;
-                        dist[nextX][nextY] = dist[x][y] + 1;
-                        queue.add(new Node(nextX, nextY, count));
-                    }
+                    visited[count][nextX][nextY] = true;
+                    queue.add(new Node(nextX, nextY, count, nextDist));
                 }
+
             }
         }
     }
