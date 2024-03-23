@@ -37,6 +37,7 @@ public class Main {
     }
 
     private static void bfs(int a) {
+        dist[a] = 0;
         Queue<Node> queue = new LinkedList<>();
         queue.add(new Node(a, 0));
 
