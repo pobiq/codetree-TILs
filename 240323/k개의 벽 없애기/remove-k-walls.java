@@ -90,18 +90,30 @@ public class Main {
 
                 if(nextX < 0 || nextX >= n || nextY < 0 || nextY >= n) continue;
 
-                if(visited[nextX][nextY]) continue;
-
                 if(map[nextX][nextY] == 1) {
                     if(count < k) {
-                        visited[nextX][nextY] = true;
-                        dist[nextX][nextY] = dist[x][y] + 1;
-                        queue.add(new Node(nextX, nextY, count+1));
+                        if(visited[nextX][nextY]) {
+                            if(dist[nextX][nextY] > dist[x][y] + 1) {
+                                dist[nextX][nextY] = dist[x][y] + 1;
+                                queue.add(new Node(nextX, nextY, count + 1));
+                            }
+                        } else {
+                            visited[nextX][nextY] = true;
+                            dist[nextX][nextY] = dist[x][y] + 1;
+                            queue.add(new Node(nextX, nextY, count + 1));
+                        }
                     }
                 } else {
-                    visited[nextX][nextY] = true;
-                    dist[nextX][nextY] = dist[x][y] + 1;
-                    queue.add(new Node(nextX, nextY, count));
+                    if(visited[nextX][nextY]) {
+                        if(dist[nextX][nextY] > dist[x][y] + 1) {
+                            dist[nextX][nextY] = dist[x][y] + 1;
+                            queue.add(new Node(nextX, nextY, count));
+                        }
+                    } else {
+                        visited[nextX][nextY] = true;
+                        dist[nextX][nextY] = dist[x][y] + 1;
+                        queue.add(new Node(nextX, nextY, count));
+                    }
                 }
             }
         }
