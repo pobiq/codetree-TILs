@@ -28,7 +28,7 @@ public class Main {
     }
 
 
-    static int result = -1;
+    static int result = Integer.MAX_VALUE;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -61,6 +61,10 @@ public class Main {
 
         bfs(new Node(r1, c1, 0, 0));
 
+        if(result == Integer.MAX_VALUE) {
+            result = -1;
+        }
+
         sb.append(result);
 
         bw.write(sb.toString());
@@ -80,7 +84,7 @@ public class Main {
             int dist = node.dist;
 
             if(x == r2 && y == c2) {
-                result = dist;
+                result = Math.min(result, dist);
             }
 
             for(int i = 0; i < 4; i++) {
