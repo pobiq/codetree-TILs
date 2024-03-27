@@ -4,6 +4,8 @@ import java.util.*;
 public class Main {
     static int[] dp;
 
+    static final int mod = 10007;
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
@@ -35,7 +37,7 @@ public class Main {
         if(n <= 3) {
             return dp[n];
         } else {
-            dp[n] = recursion(n - 2) + recursion(n - 3);
+            dp[n] = (recursion(n - 2) + recursion(n - 3)) % mod;
         }
 
         return dp[n];
