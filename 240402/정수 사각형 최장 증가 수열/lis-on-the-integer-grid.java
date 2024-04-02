@@ -46,6 +46,8 @@ public class Main {
             }
         }
 
+        Collections.sort(cells);
+
         for(int i=0; i<cells.size(); i++) {
             int x = cells.get(i).x;
             int y = cells.get(i).y;
