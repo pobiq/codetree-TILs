@@ -12,7 +12,7 @@ class Cell implements Comparable<Cell> {
 
     @Override
     public int compareTo(Cell c) {
-        return this.num = c.num;
+        return this.num - c.num;      // num 기준으로 오름차순 정렬합니다.
     }
 }
 
@@ -32,8 +32,8 @@ public class Main {
 
         int result = 0;
 
-        int[][] dp = new int[n][n];
-        int[][] map = new int[n][n];
+        int[][] dp = new int[500][500];
+        int[][] map = new int[500][500];
 
         ArrayList<Cell> cells = new ArrayList<>();
 
@@ -48,7 +48,7 @@ public class Main {
 
         Collections.sort(cells);
 
-        for(int i=0; i< cells.size(); i++) {
+        for(int i = 0; i < cells.size(); i++) {
             int x = cells.get(i).x;
             int y = cells.get(i).y;
             int[] dx = {-1, 1, 0, 0};
