@@ -17,6 +17,7 @@ public class Main {
         StringTokenizer st = new StringTokenizer(br.readLine());
         for(int i = 0; i < n; i++) {
             map[i] = Integer.parseInt(st.nextToken());
+            dp[i] = Integer.MIN_VALUE;
         }
 
         dp[0] = 1;
