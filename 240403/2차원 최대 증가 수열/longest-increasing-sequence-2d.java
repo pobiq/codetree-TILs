@@ -28,6 +28,7 @@ public class Main {
 
         for(int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
+                if(dp[i][j] == 0) continue;
                 for(int a = i+1; a < n; a++) {
                     for(int b = j+1; b < m; b++) {
                         if(map[a][b] > map[i][j]) {
