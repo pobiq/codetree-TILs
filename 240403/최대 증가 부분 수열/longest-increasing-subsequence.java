@@ -17,23 +17,18 @@ public class Main {
         StringTokenizer st = new StringTokenizer(br.readLine());
         for(int i = 0; i < n; i++) {
             map[i] = Integer.parseInt(st.nextToken());
-            dp[i] = -1;
         }
 
         dp[0] = 1;
 
         for(int i = 1; i < n; i++) {
             for(int j = 0; j < i; j++) {
-                if(dp[j] == -1) {
-                    continue;
-                }
-
                 if(map[i] > map[j]) {
                     dp[i] = Math.max(dp[i], dp[j] + 1);
                 }
             }
         }
-        
+
         for(int i = 0; i < n; i++) {
             result = Math.max(result, dp[i]);
         }
