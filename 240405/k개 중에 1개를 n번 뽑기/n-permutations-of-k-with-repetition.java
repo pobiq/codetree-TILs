@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    static int n, k;
+    static int k, n;
     static List<Integer> list = new ArrayList<>();
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -14,14 +14,14 @@ public class Main {
         k = Integer.parseInt(st.nextToken());
         n = Integer.parseInt(st.nextToken());
 
-        prev(0);
+        choose(0);
 
         bw.write(sb.toString());
         bw.flush();
         bw.close();
     }
 
-    private static void prev(int depth) {
+    private static void choose(int depth) {
         if(depth == n) {
             for(int i : list) {
                 System.out.print(i + " ");
@@ -32,8 +32,8 @@ public class Main {
 
         for(int i = 1; i <= k; i++) {
             list.add(i);
-            prev(depth + 1);
-            list.remove(new Integer(i));
+            choose(depth + 1);
+            list.remove(list.size() - 1);
         }
     }
 
